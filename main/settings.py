@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "livereload",
     "blog1",
     "whitenoise.runserver_nostatic",
+    "form1",
 ]
 
 MIDDLEWARE = [

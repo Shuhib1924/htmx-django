@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        >
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://unpkg.com/htmx.org"></script>
+        <title>Document</title>
+    </head>
+
+    <body>
+        <div class="flex justify-center items-center gap-5 p-20 h-screen">
+            <div class="flex flex-col border-4 border-slate-500 w-full h-full">
+                <form
+                    class="m-auto"
+                    hx-post="{% url 'upload' %}"
+                    hx-target="#res"
+                >
+                    {% csrf_token %}
+                    <button
+                        type="submit"
+                        class="bg-green-500 p-2 rounded-xl text-white"
+                    >send</button>
+                </form>
+            </div>
+            <div class="flex border-4 border-slate-500 w-full h-full">
+                <div
+                    id="res"
+                    class="m-auto"
+                >test</div>
+            </div>
+        </div>
+    </body>
+
+</html>
