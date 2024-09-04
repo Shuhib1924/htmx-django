@@ -1,22 +1,20 @@
 <form
-    {% comment %} hx-put="{% url 'update_todo' todo.id %}" {% endcomment %}
+    hx-put="{% url 'update_todo' todo.id %}"
     hx-target="this"
-    hx-swap="outerHTML"
+    hx-swap="innerHTML"
 >
     <article class="flex {%if todo.is_done%}bg-green-50{%endif%}">
         <div class="w-4/5 py-3">
-            <p class="px-6 text-xs text-gray-900">{{todo.title}}</p>
+            <p class="px-6 text-xs text-gray-900 {%if todo.is_done%}line-through{%endif%}">{{todo.title}}</p>
         </div>
         <div class="flex justify-end w-1/5 px-6 py-3 space-x-4">
-            {% if not todo.is_done %}
-            <button class="text-sky-600 hover:text-sky-900">Done</button>
-            {%endif%}
+            <button class="{%if todo.is_done%}bg-green-400{%else%}bg-gray-400{%endif%} hover:bg-gray-600">Done</button>
             <a
                 href=""
                 class="text-sky-600 hover:text-sky-900"
                 hx-target="closest form"
                 hx-swap="outerHTML swap:1s"
-                {% comment %} hx-delete="{% url 'delete_todo' todo.id %}" {% endcomment %}
+                hx-delete="{% url 'delete_todo' todo.id %}"
             >Delete</a>
         </div>
     </article>
