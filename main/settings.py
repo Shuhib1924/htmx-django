@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "blog1",
     "whitenoise.runserver_nostatic",
     "form1",
+    "todo1",
 ]
 
 MIDDLEWARE = [
