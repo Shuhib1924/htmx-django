@@ -10,19 +10,22 @@ def index(request):
 
 def create_book(request, pk):
     author = Author.objects.get(pk=pk)
-    formset = BookFormSet(request.POST or None)
+    form = BookForm(request.POST or None)
 
     if request.method == "POST":
-        if formset.is_valid():
-            formset.instance = author
-            formset.save()
-            return redirect("create_book", pk=author.id)
+        if form.is_valid():
+            book = form.save(commit=False)
+            book.author = author
+            book.save()
+            return redirect("book_detail", pk=book.id)
+        else:
+            return render(request, "book1/create_book.html", {"form": form})
 
     return render(
         request,
         "book1/create_book.html",
         {
-            "formset": formset,
+            "form": form,
             "author": author,
         },
     )
@@ -31,3 +34,8 @@ def create_book(request, pk):
 def book_form(request):
     context = {"form": BookForm(), "test": "context"}
     return render(request, "book1/book_form.html", context)
+
+
+def book_detail(request, pk):
+    book = Book.objects.get(pk=pk)
+    return render(request, "book1/book_detail.html", {"book": book})
