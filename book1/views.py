@@ -33,6 +33,30 @@ def create_book(request, pk):
     )
 
 
+def edit_book(request, pk):
+    book = Book.objects.get(pk=pk)
+    form = BookForm(request.POST or None, instance=book)
+
+    if request.method == "POST":
+        if form.is_valid():
+            book = form.save()
+            return redirect("book_detail", pk=book.id)
+    return render(
+        request,
+        "book1/book_form.html",
+        {
+            "form": form,
+            "book": book,
+        },
+    )
+
+
+# def edit_book(request, pk):
+#     book = Book.objects.get(pk=pk)
+#     form = BookForm(instance=book)
+#     return render(request, "book1/book_form.html", {"form": form})
+
+
 def book_form(request):
     context = {"form": BookForm(), "test": "context"}
     return render(request, "book1/book_form.html", context)
@@ -43,7 +67,7 @@ def book_detail(request, pk):
     return render(request, "book1/book_detail.html", {"book": book})
 
 
-def book_delete(request, pk):
+def delete_book(request, pk):
     book = Book.objects.get(pk=pk)
     book.delete()
     return HttpResponse(f"delete: {book.title}")

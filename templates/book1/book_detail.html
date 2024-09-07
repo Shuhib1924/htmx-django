@@ -1,6 +1,6 @@
 <div hx-target="this" hx-swap="innerHTML">
     <h3>title: {{book.title}}</h3>
     <p>pageNumber: {{book.pages}}</p>
-    <button hx-get="">update</button>
-    <button hx-post="{% url 'book_delete' book.id %}">delete</button>
+    <button hx-get="{% url 'edit_book' book.id %}">update</button>
+    <button hx-post="{% url 'delete_book' book.id %}">delete</button>
 </div>
