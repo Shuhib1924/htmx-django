@@ -10,9 +10,9 @@
 
 <form hx-post="{% url 'post' %}" hx-target="#message">
     {% csrf_token %}
-    <input type="text" name="name" placeholder="Name" required>
-    <input type="email" name="email" placeholder="Email" required>
-    <input type="color" name="color" placeholder="Color" required>
+    <input type="text" name="name" placeholder="Name">
+    <input type="email" name="email" placeholder="Email">
+    <input type="color" name="color" placeholder="Color">
     <input type="submit" value="Submit">
 </form>
 <div id="message"></div>
