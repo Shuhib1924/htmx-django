@@ -6,7 +6,7 @@ from .models import Book, Author
 class BookForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ["title", "author", "pages"]
+        fields = ["title", "pages"]
 
 
 BookFormSet = inlineformset_factory(

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Author, Book
-from .forms import BookFormSet
+from .forms import BookFormSet, BookForm
 
 
 def index(request):
@@ -26,3 +26,8 @@ def create_book(request, pk):
             "author": author,
         },
     )
+
+
+def book_form(request):
+    context = {"form": BookForm(), "test": "context"}
+    return render(request, "book1/book_form.html", context)
