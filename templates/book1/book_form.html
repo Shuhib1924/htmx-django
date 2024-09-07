@@ -1,6 +1,8 @@
-<form method="POST">
+<div hx-target="this" hx-swap="innerHTML">
+    <form hx-post>
         {% csrf_token %}
         {{form.management_form}}
         {{form.as_table}}
         <button>Submit</button>
     </form>
+</div>
