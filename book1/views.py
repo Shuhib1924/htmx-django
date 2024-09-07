@@ -10,6 +10,7 @@ def index(request):
 
 def create_book(request, pk):
     author = Author.objects.get(pk=pk)
+    books = Book.objects.filter(author=author)
     form = BookForm(request.POST or None)
 
     if request.method == "POST":
@@ -27,6 +28,7 @@ def create_book(request, pk):
         {
             "form": form,
             "author": author,
+            "books": books,
         },
     )
 

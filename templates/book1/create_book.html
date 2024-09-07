@@ -4,6 +4,11 @@
 
     <h1>create book for {{author.name}}</h1>
     <button hx-get="{% url 'book_form'%}" hx-swap="beforeend" hx-target="#bookforms">add new book</button>
-    <div id="bookforms"></div>
+
+    <div id="bookforms">
+        {% for book in books %}
+            {% include 'book1/book_detail.html' %}
+        {% endfor %}
+    </div>
 
 {% endblock main %}
