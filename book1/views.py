@@ -41,3 +41,9 @@ def book_form(request):
 def book_detail(request, pk):
     book = Book.objects.get(pk=pk)
     return render(request, "book1/book_detail.html", {"book": book})
+
+
+def book_delete(request, pk):
+    book = Book.objects.get(pk=pk)
+    book.delete()
+    return HttpResponse(f"delete: {book.title}")
