@@ -1,0 +1,13 @@
+{% extends "book1/base.html" %}
+
+{% block main %}
+
+    <h1>create book for {{author.name}}</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{formset.management_form}}
+        {{formset}}
+        <button>Submit</button>
+    </form>
+
+{% endblock main %}

@@ -22,7 +22,8 @@ from django.conf import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("b1/", include("blog1.urls")),
-    path("f1/", include("form1.urls")),
-    path("t1/", include("todo1.urls")),
+    path("bg1/", include("blog1.urls")),
+    path("fm1/", include("form1.urls")),
+    path("td1/", include("todo1.urls")),
+    path("bk1/", include("book1.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

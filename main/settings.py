@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "whitenoise.runserver_nostatic",
     "form1",
     "todo1",
+    "book1",
 ]
 
 MIDDLEWARE = [

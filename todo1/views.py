@@ -10,7 +10,7 @@ def index(request):
 
 
 @require_http_methods(["POST"])
-def add_todo(request):
+def create_todo(request):
     print(request.POST)
     todo = None
     title = request.POST.get("title", "")
