@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 import json
 from django.http import HttpResponse
 from django.views.decorators.http import require_POST
@@ -65,5 +65,22 @@ def edit_movie(request, pk):
         {
             "form": form,
             "movie": movie,
+        },
+    )
+
+
+@require_POST
+def delete_movie(request, pk):
+    movie = get_object_or_404(Movie, pk=pk)
+    movie.delete()
+    return HttpResponse(
+        status=204,
+        headers={
+            "HX-Trigger": json.dumps(
+                {
+                    "movieListChanged": None,
+                    "showMessage": f"{movie.title} deleted",
+                }
+            )
         },
     )
