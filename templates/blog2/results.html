@@ -1,0 +1,31 @@
+{% if posts %}
+    <div class="ui cards">
+        {% for post in posts %}
+            <div class="ui card">
+                <div class="image">
+                    <img src="{{ post.image.url }}">
+                </div>
+                <div class="content">
+                    <a class="header">{{ post.title }}</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <h3 class="ui header center aligned">No results!</h3>
+{% endif %}
+<div id="load-more">
+    {% if posts.has_next %}
+        <div class="ui divider"></div>
+        <button
+            class="ui button primary"
+            hx-get="{% url 'results' %}"
+            hx-vals='{"page": "{{ posts.next_page_number }}", "search": "{{ search }}"}'
+            hx-target="#load-more"
+            hx-swap="outerHTML"
+            hx-trigger="intersect"
+        >
+            Load more
+        </button>
+    {% endif %}
+</div>

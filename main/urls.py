@@ -23,8 +23,11 @@ from django.conf import settings
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("bg1/", include("blog1.urls")),
+    path("bg2/", include("blog2.urls")),
     path("fm1/", include("form1.urls")),
     path("fm2/", include("form2.urls")),
+    path("fm3/", include("form3.urls")),
     path("td1/", include("todo1.urls")),
     path("bk1/", include("book1.urls")),
+    path("md1/", include("modal1.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

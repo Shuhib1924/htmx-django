@@ -41,11 +41,15 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "livereload",
     "blog1",
+    "blog2",
     "whitenoise.runserver_nostatic",
     "form1",
     "form2",
+    "form3",
     "todo1",
     "book1",
+    "modal1",
+    "widget_tweaks",
 ]
 
 MIDDLEWARE = [
