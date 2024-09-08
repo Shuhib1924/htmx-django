@@ -37,3 +37,33 @@ def add_movie(request):
         form = MovieForm()
 
     return render(request, "modal1/movie_form.html", {"form": form})
+
+
+def edit_movie(request, pk):
+    movie = get_object_or_404(Movie, pk=pk)
+    if request.method == "POST":
+        form = MovieForm(request.POST, instance=movie)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(
+                status=204,
+                headers={
+                    "HX-Trigger": json.dumps(
+                        {
+                            "movieListChanged": None,
+                            "showMessage": f"{movie.title} updated",
+                        }
+                    )
+                },
+            )
+    else:
+        form = MovieForm(instance=movie)
+
+    return render(
+        request,
+        "modal1/movie_form.html",
+        {
+            "form": form,
+            "movie": movie,
+        },
+    )
