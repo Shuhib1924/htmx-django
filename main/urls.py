@@ -30,4 +30,6 @@ urlpatterns = [
     path("td1/", include("todo1.urls")),
     path("bk1/", include("book1.urls")),
     path("md1/", include("modal1.urls")),
+    path("imdb/", include("imdb1.urls")),
+    path("bk2/", include("book2.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     "book1",
     "modal1",
     "widget_tweaks",
+    "imdb1",
+    "book2",
 ]
 
 MIDDLEWARE = [

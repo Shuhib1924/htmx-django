@@ -1,0 +1,5 @@
+<div>all movies</div>
+
+{% for film in films %}
+    <a href="{% url 'film' film.pk %}">{{film.title}}</a>
+{% endfor %}

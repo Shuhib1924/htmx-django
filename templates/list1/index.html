@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        >
+        <link
+            rel="stylesheet"
+            href="{% static 'style.min.css' %}"
+        >
+        <script src="{% static 'htmx.min.js' %}"></script>
+        <title>Document</title>
+    </head>
+
+    <body>
+        <div class="space-y-8 mx-auto mt-10 w-5/6">
+            <h1 class="text-center underline">my list</h1>
+            <ul
+                class="mx-auto text-center"
+                id="goal"
+            >empty</ul>
+            <form
+                class="flex gap-2"
+                hx-post="{% url 'task' %}"
+                hx-swap="afterend"
+                hx-target="#goal"
+            >
+                {% csrf_token %}
+                <input
+                    type="title"
+                    class="border"
+                >
+                <input
+                    type="author"
+                    class="border"
+                >
+                <button type="submit">submit</button>
+            </form>
+        </div>
+    </body>
+
+</html>
