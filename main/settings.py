@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "widget_tweaks",
     "imdb1",
     "book2",
+    "todo2",
 ]
 
 MIDDLEWARE = [
