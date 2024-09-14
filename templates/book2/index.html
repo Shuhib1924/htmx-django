@@ -18,34 +18,44 @@
 
     <body>
         <div class="space-y-8 mx-auto mt-10 w-5/6">
-            <h1 class="text-center underline">my list</h1>
+            <h1 class="font-bold text-3xl text-center underline">my list</h1>
             {% for book in books %}
-            <ul
-                class="mx-auto text-center"
-            >{{book.title}}</ul>
+            <ul class="flex gap-2 bg-green-300 mx-auto p-2 w-fit text-center text-white">
+                <div>{{book.title}}</div>
+                <button
+                    class="bg-red-300 p-2 text-white"
+                    hx-delete="{% url 'delete' book.id %}"
+                    hx-headers='{"X-CSRFToken" : "{{csrf_token}}"}'
+                >delete</button>
+            </ul>
             {% endfor %}
             <ul
                 class="mx-auto text-center"
                 id="goal"
-                ></ul>
+            ></ul>
             <form
-                class="flex gap-2"
+                class="flex gap-2 w-full"
                 hx-post="{% url 'task' %}"
                 hx-swap="beforeend"
                 hx-target="#goal"
+                hx-on::after-request="document.querySelector('form').reset()"
             >
                 {% csrf_token %}
                 <input
                     type="title"
-                    class="border"
+                    class="border w-full"
                     name="title"
                 >
                 <input
                     type="author"
-                    class="border"
+                    class="border w-full"
                     name="author"
                 >
-                <button type="submit">submit</button>
+                <button
+                    class="bg-blue-400 p-2 text-white"
+                    type="submit"
+                    hx-on:click="console.log('added', event)"
+                >submit</button>
             </form>
         </div>
     </body>

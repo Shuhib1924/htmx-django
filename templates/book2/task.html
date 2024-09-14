@@ -1,1 +1,8 @@
-<ul class="bg-red-300 text-white mx-auto p-2 w-fit text-center">{{book.title}}</ul>
+<ul class="flex gap-2 bg-green-300 mx-auto p-2 w-fit text-center text-white">
+    <div>{{book.title}}</div>
+    <button
+        class="bg-red-300 p-2 text-white"
+        hx-delete="{% url 'delete' book.id %}"
+        hx-headers='{"X-CSRFToken" : "{{csrf_token}}"}'
+    >delete</button>
+</ul>

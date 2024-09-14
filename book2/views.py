@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Book
+from django.http import HttpResponse
 
 
 def index(request):
@@ -15,3 +16,9 @@ def task(request):
         book = Book.objects.create(title=get_title, author=get_author)
         book.save()
     return render(request, "book2/task.html", {"book": book})
+
+
+def delete_task(request, pk):
+    book = Book.objects.get(pk=pk)
+    book.delete()
+    return HttpResponse(f"delete: {book.title}")
