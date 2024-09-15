@@ -10,7 +10,13 @@ def add_task(request):
         print("title", title)
         Task.objects.create(title=title, owner=request.user)
     return render(
-        request, "todo2/tasks.html", {"tasks": Task.objects.filter(owner=request.user)}
+        request,
+        "todo2/tasks.html",
+        {
+            "tasks": Task.objects.filter(owner=request.user).order_by(
+                "status", "-created_at"
+            )
+        },
     )
 
 
@@ -18,7 +24,13 @@ def delete_task(request, pk):
     task = Task.objects.get(pk=pk)
     task.delete()
     return render(
-        request, "todo2/tasks.html", {"tasks": Task.objects.filter(owner=request.user)}
+        request,
+        "todo2/tasks.html",
+        {
+            "tasks": Task.objects.filter(owner=request.user).order_by(
+                "status", "-created_at"
+            )
+        },
     )
 
 
@@ -30,5 +42,11 @@ def edit_task(request, pk):
         task.status = True
     task.save()
     return render(
-        request, "todo2/tasks.html", {"tasks": Task.objects.filter(owner=request.user)}
+        request,
+        "todo2/tasks.html",
+        {
+            "tasks": Task.objects.filter(owner=request.user).order_by(
+                "status", "-created_at"
+            )
+        },
     )
