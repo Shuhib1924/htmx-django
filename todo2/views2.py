@@ -12,3 +12,23 @@ def add_task(request):
     return render(
         request, "todo2/tasks.html", {"tasks": Task.objects.filter(owner=request.user)}
     )
+
+
+def delete_task(request, pk):
+    task = Task.objects.get(pk=pk)
+    task.delete()
+    return render(
+        request, "todo2/tasks.html", {"tasks": Task.objects.filter(owner=request.user)}
+    )
+
+
+def edit_task(request, pk):
+    task = Task.objects.get(pk=pk)
+    if task.status:
+        task.status = False
+    else:
+        task.status = True
+    task.save()
+    return render(
+        request, "todo2/tasks.html", {"tasks": Task.objects.filter(owner=request.user)}
+    )

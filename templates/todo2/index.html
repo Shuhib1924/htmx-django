@@ -27,6 +27,7 @@
                 name="add_task"
                 hx-post="{%url 'add_task'%}"
                 hx-target="#tasks"
+                hx-on::after-request="document.querySelector('form').reset()"
                 >
                 Add
             </button>
