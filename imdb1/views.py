@@ -40,58 +40,58 @@ def data(request):
     return HttpResponse(msg, content_type="text/plain")
 
 
-def data2(request):
-    file_ = find("imdb.json")
-    with open(file_) as f:
-        data = f.read()
+# def data2(request):
+#     file_ = find("imdb.json")
+#     with open(file_) as f:
+#         data = f.read()
 
-    newFilms = 0
-    file_path = os.path.join(module_dir, "imdb.json")
-    with open(file_path, "r", encoding="utf-8") as f:
-        data = f.readlines()
+#     newFilms = 0
+#     file_path = os.path.join(module_dir, "imdb.json")
+#     with open(file_path, "r", encoding="utf-8") as f:
+#         data = f.readlines()
 
-    newFilms = 0
-    lenOfData = len(data)
-    for item in range(0, len(data)):
-        film_row = data[item].rstrip("\n")
-        (
-            poster,
-            title,
-            released,
-            cert,
-            duration,
-            genre,
-            iMDB_Rating,
-            overview,
-            director,
-            star1,
-            star2,
-            star3,
-            star4,
-            gross,
-        ) = re.split(r',(?=")', film_row)
-        released = f"{released[1:-1]}-01-01"
-        dur = f"{duration[1:-5]}"
-        f_dur = timedelta(minutes=int(dur))
-        if not Film.objects.filter(title=title).exists():
-            obj = Film.objects.update_or_create(
-                title=title,
-                released=released,
-                certificate=cert,
-                duration=f_dur,
-                genre=genre,
-                director=director,
-                star1=star1,
-                star2=star2,
-                star3=star3,
-                star4=star4,
-                overview=overview,
-                poster=poster,
-                gross=int(gross[1:-1].replace(",", "")),
-            )
-            newFilms += 1
-        print(f"Adding Films {round((item/lenOfData)*100,2)}%")
-    return redirect("/")
+#     newFilms = 0
+#     lenOfData = len(data)
+#     for item in range(0, len(data)):
+#         film_row = data[item].rstrip("\n")
+#         (
+#             poster,
+#             title,
+#             released,
+#             cert,
+#             duration,
+#             genre,
+#             iMDB_Rating,
+#             overview,
+#             director,
+#             star1,
+#             star2,
+#             star3,
+#             star4,
+#             gross,
+#         ) = re.split(r',(?=")', film_row)
+#         released = f"{released[1:-1]}-01-01"
+#         dur = f"{duration[1:-5]}"
+#         f_dur = timedelta(minutes=int(dur))
+#         if not Film.objects.filter(title=title).exists():
+#             obj = Film.objects.update_or_create(
+#                 title=title,
+#                 released=released,
+#                 certificate=cert,
+#                 duration=f_dur,
+#                 genre=genre,
+#                 director=director,
+#                 star1=star1,
+#                 star2=star2,
+#                 star3=star3,
+#                 star4=star4,
+#                 overview=overview,
+#                 poster=poster,
+#                 gross=int(gross[1:-1].replace(",", "")),
+#             )
+#             newFilms += 1
+#         print(f"Adding Films {round((item/lenOfData)*100,2)}%")
+#     return redirect("/")
 
 
 def index(request):
