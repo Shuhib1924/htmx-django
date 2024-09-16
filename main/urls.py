@@ -33,4 +33,5 @@ urlpatterns = [
     path("imdb/", include("imdb1.urls")),
     path("bk2/", include("book2.urls")),
     path("td2/", include("todo2.urls")),
+    path("st1/", include("store1.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
