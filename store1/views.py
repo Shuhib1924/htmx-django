@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Product, Category
 from django.db.models import Q
+from .cart import Cart
 
 
 def index(request):
@@ -32,5 +33,12 @@ def shop(request):
     return render(request, "store1/shop.html", context)
 
 
-def product(request):
-    return render(request, "store1/product.html")
+def product(request, slug):
+    product = get_object_or_404(Product, slug=slug)
+    return render(request, "store1/product.html", {"product": product})
+
+
+def add_cart(request, product_id):
+    cart = Cart(request)
+    cart.add(product_id)
+    return render(request, "store1/badge.html")
