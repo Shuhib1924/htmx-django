@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.http import JsonResponse
 from .models import Person
+from django.utils.html import format_html
 
 
 def index(request):
@@ -22,3 +23,15 @@ def result(request):
 
     context = {"people": people, "count": all_people.count()}
     return render(request, "search1/result.html", context)
+
+
+def highlight_matched_text(text, query):
+    """
+    Inserts html around the matched text.
+    """
+    start = text.lower().find(query.lower())
+    if start == -1:
+        return text
+    end = start + len(query)
+    highlighted = format_html('<span class="highlight">{}</span>', text[start:end])
+    return format_html("{}{}{}", text[:start], highlighted, text[end:])
