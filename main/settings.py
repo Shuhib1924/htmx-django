@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "book2",
     "todo2",
     "store1",
+    "search1",
 ]
 
 MIDDLEWARE = [
