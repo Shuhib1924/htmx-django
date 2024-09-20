@@ -18,10 +18,17 @@ def result(request):
     all_people = Person.objects.all()
     if query:
         people = all_people.filter(name__icontains=query)
+        highlighted_people = [
+            {
+                "name": highlight_matched_text(person.name, query),
+                "description": person.description,
+            }
+            for person in people
+        ]
     else:
-        people = []
+        highlighted_people = []
 
-    context = {"people": people, "count": all_people.count()}
+    context = {"people": highlighted_people, "count": all_people.count()}
     return render(request, "search1/result.html", context)
 
 
