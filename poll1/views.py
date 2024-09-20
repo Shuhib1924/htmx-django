@@ -46,4 +46,4 @@ def row(request):
         }
         new_purchases.append(purchase)
 
-    return render(request, "table-rows.html", context={"purchases": new_purchases})
+    return render(request, "poll1/row-list.html", context={"purchases": new_purchases})

@@ -1,4 +1,3 @@
-{% for purchase in purchases %}
 <tr>
     <td>
         <span>{{ purchase.price }}</span>
@@ -8,5 +7,4 @@
     <td>{{ purchase.buyer }}</td>
     <td>{% now 'H:m:s d/m/Y' %}</td>
     <td><a>More</a></td>
-</tr
-{% endfor %}
+</tr>

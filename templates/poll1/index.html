@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://unpkg.com/htmx.org@1.9.12" integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/htmx.org"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Sales </title>
 </head>
@@ -25,9 +25,11 @@
                     </tr>
                     </thead>
                     <tbody id="table-body">
-                    {% include 'poll1/row.html' with purchases=purchases %}
+                    {% include 'poll1/row-list.html' with purchases=purchases %}
+                    <div hx-get="{% url 'row1' %}" hx-trigger="every 2s" hx-swap="afterbegin" hx-target="#table-body"></div>
                     </tbody>
                 </table>
+                {% comment %} <button hx-get="{% url 'row1' %}" hx-swap="aferbegin" hx-target="#table-body">poll</button> {% endcomment %}
             </div>
         </div>
     </div>
