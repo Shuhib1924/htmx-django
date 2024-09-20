@@ -1,0 +1,35 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/htmx.org@1.9.12" integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Sales </title>
+</head>
+<div>
+    <header>
+        Your Sales on {% now 'D M Y' %}
+    </header>
+    <div>
+        <div>
+            <div>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Price</th>
+                        <th>Product</th>
+                        <th>Category</th>
+                        <th>Customer</th>
+                        <th>Time</th>
+                        <th><span>More</span></th>
+                    </tr>
+                    </thead>
+                    <tbody id="table-body">
+                    {% include 'poll1/row.html' with purchases=purchases %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

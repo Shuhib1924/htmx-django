@@ -40,5 +40,5 @@ def highlight_matched_text(text, query):
     if start == -1:
         return text
     end = start + len(query)
-    highlighted = format_html('<span class="highlight">{}</span>', text[start:end])
+    highlighted = format_html('<span class="bg-yellow-500">{}</span>', text[start:end])
     return format_html("{}{}{}", text[:start], highlighted, text[end:])
