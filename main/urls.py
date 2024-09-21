@@ -37,4 +37,5 @@ urlpatterns = [
     path("src1/", include("search1.urls")),
     path("poll1/", include("poll1.urls")),
     path("scroll1/", include("scroll1.urls")),
+    path("quiz1/", include("quiz1.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
