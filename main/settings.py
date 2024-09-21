@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     "poll1",
     "scroll1",
     "quiz1",
+    "search2",
 ]
 
 MIDDLEWARE = [
