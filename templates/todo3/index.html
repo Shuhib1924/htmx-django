@@ -18,26 +18,19 @@
 
   <div class="todo-list" id="todo-list">
     {% for task in tasks %}
-
-
     {% if task.completed == True %}
-
-
     <div class="todo-list-item">
         <div class="task">
           <input
             type="checkbox"
-
             hx-trigger="change"
             hx-target="#todo-container"
             hx-swap="outerHTML"
-            hx-post="#"
-
+            hx-post="{% url 'checked' task.id %}"
             checked
           />
           <p style="text-decoration: line-through">{{task.title}}</p>
         </div>
-
         <div class="btn-container">
           <div
             class="edit"
@@ -48,10 +41,9 @@
           >
             <i class="fa-solid fa-pen-to-square"></i>
           </div>
-
           <div
             class="del"
-            hx-post="#"
+            hx-post="{% url 'delete' task.id %}"
             hx-trigger="click"
             hx-target="#todo-container"
             hx-swap="outerHTML"
@@ -61,10 +53,7 @@
           </div>
         </div>
       </div>
-
-
       {% else %}
-
       <div class="todo-list-item">
         <div class="task">
           <input
@@ -72,11 +61,10 @@
             hx-trigger="change"
             hx-target="#todo-container"
             hx-swap="outerHTML"
-            hx-post="#"
+            hx-post="{% url 'checked' task.id %}"
           />
           <p>{{task.title}}</p>
         </div>
-
         <div class="btn-container">
           <div
             class="edit"
@@ -100,13 +88,7 @@
           </div>
         </div>
       </div>
-
-
-
     {% endif %}
-
-
-
     {% endfor %}
   </div>
 </div>

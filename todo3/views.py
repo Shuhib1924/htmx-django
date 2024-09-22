@@ -41,3 +41,15 @@ def delete(request, pk):
     task.delete()
     tasks = Task.objects.all()
     return render(request, "todo3/index.html", {"tasks": tasks})
+
+
+def checked(request, pk):
+    task = Task.objects.get(pk=pk)
+    print(task.title, task.completed)
+    if task.completed == True:
+        task.completed = False
+    else:
+        task.completed = True
+    task.save()
+    tasks = Task.objects.all()
+    return render(request, "todo3/index.html", {"tasks": tasks})
