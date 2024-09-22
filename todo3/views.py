@@ -33,3 +33,11 @@ def edit(request, pk):
         <input type="text" value="{task.title}" name="task" required placeholder="edit task"/>
         """
     )
+
+
+def delete(request, pk):
+    task = Task.objects.get(pk=pk)
+    print("task", task)
+    task.delete()
+    tasks = Task.objects.all()
+    return render(request, "todo3/index.html", {"tasks": tasks})

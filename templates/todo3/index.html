@@ -80,7 +80,7 @@
         <div class="btn-container">
           <div
             class="edit"
-            hx-get="{% url 'edit' task.id %}"
+            hx-put="{% url 'edit' task.id %}"
             hx-trigger="click"
             hx-target="#input"
             hx-swap="outerHTML"
@@ -90,7 +90,7 @@
 
           <div
             class="del"
-            hx-post="#"
+            hx-delete="{% url 'delete' task.id %}"
             hx-trigger="click"
             hx-target="#todo-container"
             hx-swap="outerHTML"
