@@ -14,4 +14,5 @@ def create(request):
         task = request.POST["task"]
         task = Task(title=task)
         task.save()
-    return render(request, "todo3/index.html")
+        tasks = Task.objects.all()
+    return render(request, "todo3/index.html", {"tasks": tasks})
