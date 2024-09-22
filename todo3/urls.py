@@ -7,6 +7,7 @@ urlpatterns = [
 
 htmx_urlpatterns = [
     path("create/", create, name="create"),
+    path("edit/<int:pk>/", edit, name="edit"),
 ]
 
 urlpatterns += htmx_urlpatterns

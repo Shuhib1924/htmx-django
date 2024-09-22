@@ -41,7 +41,7 @@
         <div class="btn-container">
           <div
             class="edit"
-            hx-get="{% url 'append-to-form' task.id %}"
+            hx-get="{% url 'edit' task.id %}"
             hx-trigger="click"
             hx-target="#input"
             hx-swap="outerHTML"
@@ -69,7 +69,6 @@
         <div class="task">
           <input
             type="checkbox"
-
             hx-trigger="change"
             hx-target="#todo-container"
             hx-swap="outerHTML"
@@ -81,7 +80,7 @@
         <div class="btn-container">
           <div
             class="edit"
-            hx-get="#"
+            hx-get="{% url 'edit' task.id %}"
             hx-trigger="click"
             hx-target="#input"
             hx-swap="outerHTML"
