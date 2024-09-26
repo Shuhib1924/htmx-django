@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     "search2",
     "todo3",
     "ani1",
+    "check1",
 ]
 
 MIDDLEWARE = [

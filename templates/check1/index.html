@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        >
+        <script src="https://unpkg.com/htmx.org"></script>
+        <title>Document</title>
+    </head>
+
+    <body>
+        <form action="POST">
+            {%csrf_token%}
+            <input
+                type="text"
+                name="data"
+                placeholder="check email or username"
+                hx-post="{% url 'check'%}"
+                hx-target="#result"
+                hx-trigger="keyup"
+            >
+            <div id="result"></div>
+        </form>
+    </body>
+
+</html>
