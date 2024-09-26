@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     "quiz1",
     "search2",
     "todo3",
+    "ani1",
 ]
 
 MIDDLEWARE = [
