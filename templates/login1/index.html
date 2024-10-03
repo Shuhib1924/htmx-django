@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/htmx.org"></script>
     <title>Document</title>
     <style>
         table, tr, td {
@@ -25,8 +26,22 @@
             <td>{{row.make}}</td>
             <td>{{row.model}}</td>
             <td>{{row.year}}</td>
+            <td><button
+                style="background-color: #ff4233;"
+                id="delete_btn"
+                car_id="{{row.id}}"
+                hx-get="{% url 'delete' car_id=row.id %}"
+                hx-target="#row_{{row.id}}"
+                hx-confirm="are u sure to delete: {{row.make}} - {{row.model}} - {{row.year}}?"
+            >delete</button>
+            </td>
         </tr>
     {% endfor %}
     </table>
+    <script>
+        document.body.addEventListener('htmx:configRequest', (event)=>{
+            event.detail.headers['X-CSRFToken'] = '{{csrf_token}}';
+        })
+    </script>
 </body>
 </html>
