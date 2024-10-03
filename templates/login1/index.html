@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table, tr, td {
+            border: 1px solid;
+        },
+        .warning {
+            color: #ff0000;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <a href="">test</a>
+    <hr>
+    <table style="width: 600px;">
+    {% for row in car_qs %}
+        {% comment %} <div>{{row.id}}: {{row.make}} - {{row.model}} - {{row.year}}</div> {% endcomment %}
+        <tr id="row_{{row.id}}">
+            <td>{{row.id}}</td>
+            <td>{{row.make}}</td>
+            <td>{{row.model}}</td>
+            <td>{{row.year}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+</body>
+</html>

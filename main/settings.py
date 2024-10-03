@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     "todo3",
     "ani1",
     "check1",
+    "login1",
 ]
 
 MIDDLEWARE = [

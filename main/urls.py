@@ -42,4 +42,5 @@ urlpatterns = [
     path("search2/", include("search2.urls")),
     path("todo3/", include("todo3.urls")),
     path("check1/", include("check1.urls")),
+    path("login1/", include("login1.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
