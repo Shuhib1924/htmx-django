@@ -16,7 +16,7 @@
     </style>
 </head>
 <body>
-    <a href="">test</a>
+    <a href="{%url 'index'%}">reload data</a>
     <hr>
     <table style="width: 600px;">
     {% for row in car_qs %}
@@ -26,22 +26,39 @@
             <td>{{row.make}}</td>
             <td>{{row.model}}</td>
             <td>{{row.year}}</td>
-            <td><button
-                style="background-color: #ff4233;"
-                id="delete_btn"
-                car_id="{{row.id}}"
-                hx-get="{% url 'delete' car_id=row.id %}"
-                hx-target="#row_{{row.id}}"
-                hx-confirm="are u sure to delete: {{row.make}} - {{row.model}} - {{row.year}}?"
-            >delete</button>
+            <td>
+                <button
+                    type="button"
+                    style="background-color: #ff4233;"
+                    id="delete_btn"
+                    car_id="{{row.id}}"
+                    hx-get="{% url 'delete' car_id=row.id %}"
+                    hx-target="#row_{{row.id}}"
+                    hx-confirm="are u sure to delete: {{row.make}} - {{row.model}} - {{row.year}}?"
+                >delete</button>
+                <button
+                    type="button"
+                    id="edit_form_btn"
+                    car_id="{{row.id}}"
+                    hx-get="{% url 'edit' car_id=row.id %}"
+                    hx-target="#response"
+                >edit</button>
             </td>
         </tr>
     {% endfor %}
     </table>
+    <div id="response"></div>
+    <hr>
+    <h2>add new data</h2>
+    <form action="{% url 'index' %}" method="POST">
+        {% csrf_token %}
+        {{form.as_table}}
+        <input type="submit">
+    </form>
+</body>
     <script>
         document.body.addEventListener('htmx:configRequest', (event)=>{
             event.detail.headers['X-CSRFToken'] = '{{csrf_token}}';
         })
     </script>
-</body>
 </html>

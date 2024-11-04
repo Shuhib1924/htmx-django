@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import CarForm
 from .models import Car
 from loguru import logger
@@ -26,3 +26,19 @@ def delete(request, car_id):
     except Car.DoesNotExist:
         pass
     return HttpResponse(f'<div class="warning">{car_id} deleted</div>')
+
+
+def edit(request, car_id):
+    row = Car.objects.get(id=car_id)
+
+    if request.method == "GET":
+        form = CarForm(instance=row)
+        context = {"form": form, "car_id": car_id}
+        return render(request, "login1/edit.html", context)
+    elif request.method == "POST":
+        if row:
+            form = CarForm(request.POST, instance=row)
+            if form.is_valid():
+                form.save()
+                context = {"form": form}
+                return redirect("index")

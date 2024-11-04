@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     "ani1",
     "check1",
     "login1",
+    "scroll2",
 ]
 
 MIDDLEWARE = [
