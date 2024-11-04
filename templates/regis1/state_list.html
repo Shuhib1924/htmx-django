@@ -1,0 +1,38 @@
+{% extends "regis1/base.html" %}
+{% block content %}
+    <h1>Regiões e Estados do Brasil</h1>
+    <h2 style="color: #3465a4;">Filtrando várias tabelas com um clique</h2>
+    <div class="row">
+        <div class="col">
+            <table class="table-hover table">
+                <thead>
+                    <tr>
+                        <th>Região</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for region in regions %}
+                        <tr hx-get="{% url 'state:state_result' %}?region={{ region.0 }}"
+                            hx-target="#states">
+                            <td>
+                                <a>{{ region.1 }}</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Estados</th>
+                    </tr>
+                </thead>
+                <tbody id="states">
+                    <!-- O novo conteúdo será inserido aqui. -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content %}

@@ -45,4 +45,5 @@ urlpatterns = [
     path("login1/", include("login1.urls")),
     path("scroll2/", include("scroll2.urls")),
     path("modal2/", include("modal2.urls")),
+    path("regis1/", include("regis1.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

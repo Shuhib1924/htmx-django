@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://unpkg.com/htmx.org@2.0.3"></script>
+        <script src="https://unpkg.com/htmx.org@2.0.3/dist/ext/client-side-templates"></script>
+        <script src="https://unpkg.com/mustache"></script>
+        <meta name="htmx-config" content='{"selfRequestsOnly" : false}'>
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <!-- Font-awesome -->
+        <link rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title>Document</title>
+    </head>
+    <body>
+        {% include "regis1/nav.html" %}
+        {% comment %} <div hx-ext="client-side-templates">
+            <button hx-get="https://jsonplaceholder.typicode.com/todos/1" hx-target="#target" mustache-template="t1">call</button>
+            <p id="target">HERE</p>
+            <template id="t1">
+                <p>{{ title }}</p>
+            </template>
+        </div> {% endcomment %}
+        {% block content %}
+        {% endblock content %}
+    </body>
+</html>
