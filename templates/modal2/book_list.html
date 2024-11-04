@@ -1,0 +1,58 @@
+<div class="col" hx-include="#checked-books">
+    <button class="btn btn-primary"
+            hx-post="{% url 'book_delete_selected' %}"
+            hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'>Delete Selected</button>
+    <button class="btn btn-primary"
+            hx-post="{% url 'book_available_selected' %}"
+            hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'>Set AVAILABLE for Selected</button>
+    <button class="btn btn-primary"
+            hx-post="{% url 'book_notavailable_selected' %}"
+            hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'>Set NOT AVAILABLE for Selected</button>
+</div>
+<form id="checked-books">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <input type="checkbox" class="form-check-input" id="selectAll" />
+                </th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Status</th>
+                <th>Year</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+                <tr id="book-{{ book.pk }}" class="book-row">
+                    <td>
+                        <input type='checkbox'
+                               class="form-check-input"
+                               name='{{ book.pk }}'
+                               value='{{ book.title }}'>
+                    </td>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.status }}</td>
+                    <td>{{ book.year }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</form>
+<script>
+
+    $('#selectAll').click(function (e) {
+        if (this.checked) {
+            // Iterate each checkbox
+            $(':checkbox').each(function () {
+                this.checked = true;
+            });
+        } else {
+            $(':checkbox').each(function () {
+                this.checked = false;
+            });
+        }
+    });
+
+</script>
