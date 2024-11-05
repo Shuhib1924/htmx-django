@@ -1,7 +1,38 @@
 {% extends "regis1/base.html" %}
 {% block content %}
-    <h1>Regiões e Estados do Brasil</h1>
+<h2 style="color: #3465a4;">Filtro com dropdowns dependentes</h2>
+
+<hr>
+    <h1>States in Brazil</h1>
     <h2 style="color: #3465a4;">Filtrando várias tabelas com um clique</h2>
+    <div class="row">
+
+  <div class="col">
+    <label>nation</label>
+    <select
+      name="region"
+      class="form-control"
+      hx-get="{% url 'state:state_drop' %}"
+      hx-target="#uf"
+    >
+      <option value="">-----</option>
+      {% for region in regions %}
+        <option value="{{ region.0 }}">{{ region.1 }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="col">
+    <label>UF</label>
+    <select
+      id="uf"
+      class="form-control"
+    >
+      <option value="">-----</option>
+      <!-- O novo conteúdo será inserido aqui. -->
+    </select>
+  </div>
+</div>
     <div class="row">
         <div class="col">
             <table class="table-hover table">

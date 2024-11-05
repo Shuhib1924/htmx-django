@@ -40,3 +40,19 @@ def state_result(request):
 
     context = {"ufs": ufs[region]}
     return render(request, template_name, context)
+
+
+def state_drop(request):
+    template_name = "regis1/drop_hx.html"
+    region = request.GET.get("region")
+
+    ufs = {
+        "n": get_states("Norte"),
+        "ne": get_states("Nordeste"),
+        "s": get_states("Sul"),
+        "se": get_states("Sudeste"),
+        "co": get_states("Centro-Oeste"),
+    }
+
+    context = {"ufs": ufs[region]}
+    return render(request, template_name, context)
