@@ -1,0 +1,12 @@
+{% for user in users %}
+<div class="box">
+    <p class="subtitle is-1">{{ user }}</p>
+
+    {% if user.is_staff %}
+        <span class="tag is-success">Staff</span>
+    {% endif %}
+
+</div>
+    <br>
+{% endfor %}
+{% include 'scroll3/page.html' with page=users %}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo List</title>
+    <script src="https://unpkg.com/htmx.org"></script>
+</head>
+<body hx-headers='{"X-CSRFToken": "{{csrf_token}}"}'>
+<h2>Todo List</h2>
+
+<form hx-post="{% url 'add-task' %}" hx-target="#task-list" hx-swap="innerHTML" hx-on::after-request="document.querySelector('form').reset()">
+    <input type="text" name="task" required placeholder="New Task">
+    <button type="submit">Add Task</button>
+</form>
+
+<ul id="task-list">
+    {% include 'todo4/task_list_partial.html' %}
+</ul>
+
+</body>
+</html>

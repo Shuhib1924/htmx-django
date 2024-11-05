@@ -66,6 +66,8 @@ INSTALLED_APPS = [
     "scroll2",
     "modal2",
     "regis1",
+    "todo4",
+    "scroll3",
 ]
 
 MIDDLEWARE = [
