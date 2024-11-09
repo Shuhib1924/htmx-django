@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/htmx.org"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="flex w-1/2 m-12">
+        <div class="w-1/2 p-4 space-y-2 bg-red-100">
+            {% for region in regions %}
+                <div class="cursor-pointer" hx-get="{% url 'state' %}?region={{region.0}}" hx-target="#a3">{{region.1}}</div>
+                <!-- <div class="cursor-pointer" hx-get="{% url 'state' %}" hx-target="#a3">{{region.1}}</div> -->
+            {% endfor %}
+        </div>
+        <div class="w-1/2 p-4 space-y-2 bg-blue-100" id="a3">target</div>
+    </div>
+    <hr class="border border-black">
+    <div class="m-12 space-x-5">
+    <select name="region" id="" hx-get="{% url 'drop'%}" hx-target="#b3">
+        {% for region in regions %}
+            <option value="{{region.0}}">{{region.1}}</option>
+        {% endfor %}
+    </select>
+    <select name="name2" id="b3">
+    </select>
+    </div>
+</body>
+</html>

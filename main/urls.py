@@ -49,4 +49,5 @@ urlpatterns = [
     path("todo4/", include("todo4.urls")),
     path("scroll3/", include("scroll3.urls")),
     path("blog3", include("blog3.urls")),
+    path("regis2", include("regis2.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

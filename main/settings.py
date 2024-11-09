@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     "scroll2",
     "modal2",
     "regis1",
+    "regis2",
     "todo4",
     "scroll3",
     "blog3",
