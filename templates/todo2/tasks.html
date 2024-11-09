@@ -5,13 +5,13 @@
             hx-put="{% url 'edit_task' task.id %}"
             hx-target="#tasks"
             {% if task.status %}checked{% endif %}
-            id="i{{forloop.counter}}"
+            id="{{forloop.counter}}"
             name="todo1"
             type="checkbox"
             class="focus:ring-teal-500 w-4 h-4 text-teal-600 border-gray-300 rounded"
         >
         <label
-            for="i{{forloop.counter}}"
+            for="{{forloop.counter}}"
             class="block ml-3 text-gray-900"
         >
             <span class="text-lg font-medium">

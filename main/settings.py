@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     "regis1",
     "todo4",
     "scroll3",
+    "blog3",
 ]
 
 MIDDLEWARE = [

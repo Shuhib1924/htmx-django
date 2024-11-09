@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+    {% comment %} <script src="https://cdn.tailwindcss.com?plugins=typography"></script> {% endcomment %}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/htmx.org"></script>
+    <script defer src="https://unpkg.com/alpinejs"></script>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        newFont: 'Doto'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-newFont prose">
+    {% include "blog3/navbar.html" %}
+    {% block content %}
+    {% endblock content %}
+</body>
+</html>
