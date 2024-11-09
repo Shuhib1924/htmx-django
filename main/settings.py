@@ -69,6 +69,7 @@ INSTALLED_APPS = [
     "todo4",
     "scroll3",
     "blog3",
+    "taggit",
 ]
 
 MIDDLEWARE = [
@@ -98,6 +99,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "store1.context_processors.cart",
             ],
+            "builtins": ["blog3.tag_cloud"],
         },
     },
 ]

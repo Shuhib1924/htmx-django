@@ -14,9 +14,9 @@ index
     <div class="w-2/3">
     {% include "blog3/posts.html" %}
     </div>
-    <div class="w-1/3">
-            <h3></h3>
-            <button class="p-3 border-2 rounded-full">test</button>
+    <div class="w-1/3 space-y-5">
+            {% sidebar_tag_cloud %}
+            <hr>
         </div>
 </div>
 {% endblock content %}
