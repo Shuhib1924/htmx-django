@@ -7,6 +7,6 @@
     <td class="px-4 py-2">{{expense.description}}</td>
     <td class="px-4 py-2">{{expense.value}}</td>
     <td class="px-4 py-2">{%if expense.paid%} Yes {%else%} No {%endif%}</td>
-    <td class="px-4 py-2"><a hx-get="{% url 'detail_row' expense.id %}">Ed</a> <span>/</span> <a hx-delete="{% url 'delete_item' expense.id %}" hx-target="#goal1">Del</a></td>
+    <td class="px-4 py-2"><a hx-get="{% url 'detail_row' expense.id %}">Ed</a> <span>/</span> <a hx-delete="{% url 'delete_item' expense.id %}" hx-target="#goal1" hx-target="closest tr" hx-swap="outerHTML swap:500ms">Del</a></td>
 </tr>
 {% endfor %}
