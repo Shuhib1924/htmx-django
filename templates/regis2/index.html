@@ -46,8 +46,8 @@
         <button class="p-4 text-lg text-white bg-red-500" hx-post="{% url 'no_paid' %}" hx-target="#goal1" hx-include="#table_input">no-paid</button>
     </div>
     <hr>
-    <button hx-post="{% url 'paid'%}" hx-target="#t1">test2</button>
-    <div id="t1">here</div>
+    {% comment %} <button hx-post="{% url 'paid'%}" hx-target="#t1">test2</button>
+    <div id="t1">here</div> {% endcomment %}
     <hr>
     <table class="border-spacing-4 w-full table-auto" id="table_input">
         <thead class=" border-b-4">
@@ -56,7 +56,7 @@
                 <th class="text-start w-5/12 px-4 py-4">Name</th>
                 <th class="text-start w-2/12 px-4 py-4">Price</th>
                 <th class="text-start w-2/12 px-4 py-4">Paid</th>
-                <th class="text-start w-2/12 px-4 py-4">---</th>
+                <th class="text-start w-2/12 px-4 py-4">E or D</th>
             </tr>
         </thead>
         <tbody class="divide-y-2" id="goal1">

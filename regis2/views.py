@@ -55,6 +55,32 @@ def no_paid(request):
     return render(request, "regis2/table.html", {"expenses": expenses})
 
 
+def detail_row(request, pk):
+    expense = Expense.objects.get(pk=pk)
+    form = ExpenseForm(request.POST or None, instance=expense)
+    context = {"form": form, "expense": expense}
+    return render(request, "regis2/row.html", context)
+
+
+def edit_row(request, pk):
+    print(request.POST)
+    expense = Expense.objects.get(pk=pk)
+    form = ExpenseForm(request.POST or None, instance=expense)
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+    expenses = Expense.objects.all().order_by("paid")
+    return render(request, "regis2/table.html", {"expenses": expenses})
+
+
+@require_http_methods(["DELETE"])
+def delete_item(request, pk):
+    expense = Expense.objects.get(pk=pk)
+    expense.delete()
+    expenses = Expense.objects.all().order_by("paid")
+    return render(request, "regis2/table.html", {"expenses": expenses})
+
+
 def get_states(region):
     return [state for state in states.get(region).items()]
 

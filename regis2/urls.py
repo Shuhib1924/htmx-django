@@ -10,4 +10,7 @@ urlpatterns = [
     path("/paid", views.paid, name="paid"),
     path("/no_paid", views.no_paid, name="no_paid"),
     path("/test", views.test, name="test"),
+    path("/edit_row/<int:pk>/", views.edit_row, name="edit_row"),
+    path("/detail_row/<int:pk>/", views.detail_row, name="detail_row"),
+    path("/delete_item/<int:pk>/", views.delete_item, name="delete_item"),
 ]
