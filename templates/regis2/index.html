@@ -7,7 +7,7 @@
     <script src="https://unpkg.com/htmx.org"></script>
     <title>Document</title>
 </head>
-<body>
+<body hx-headers='{ "X-CSRFToken" : "{{csrf_token}}"}'>
     <div class="flex w-1/2 m-12">
         <div class="w-1/2 p-4 space-y-2 bg-red-100">
             {% for region in regions %}
@@ -26,6 +26,43 @@
     </select>
     <select name="name2" id="b3">
     </select>
+    </div>
+    <hr class="border border-black">
+    <div class="m-12 space-y-4">
+    <form hx-headers='{"X-CSRFToken": "{{csrf_token}}"}'
+        hx-post="{% url 'expense' %}"
+        hx-target="#goal1"
+        hx-swap="innerHTML"
+        hx-on::after-request="document.querySelector('form').reset()">
+        {% for field in form %}
+        {{field}}
+        {% endfor %}
+        {% comment %} <input type="text" class="border-2"> {% endcomment %}
+        {% comment %} <input type="text" class="border-2"> {% endcomment %}
+        <button class="p-2 text-white bg-green-400">add</button>
+    </form>
+    <div class="flex gap-3 m-8" >
+        <button class="p-4 text-lg text-white bg-green-500" hx-post="{% url 'paid' %}" hx-target="#goal1" hx-include="#table_input">paid</button>
+        <button class="p-4 text-lg text-white bg-red-500" hx-post="{% url 'no_paid' %}" hx-target="#goal1" hx-include="#table_input">no-paid</button>
+    </div>
+    <hr>
+    <button hx-post="{% url 'paid'%}" hx-target="#t1">test2</button>
+    <div id="t1">here</div>
+    <hr>
+    <table class="border-spacing-4 w-full table-auto" id="table_input">
+        <thead class=" border-b-4">
+            <tr>
+                <th class="text-start w-1/12 px-4 py-4">BOX</th>
+                <th class="text-start w-5/12 px-4 py-4">Name</th>
+                <th class="text-start w-2/12 px-4 py-4">Price</th>
+                <th class="text-start w-2/12 px-4 py-4">Paid</th>
+                <th class="text-start w-2/12 px-4 py-4">---</th>
+            </tr>
+        </thead>
+        <tbody class="divide-y-2" id="goal1">
+           {% include "regis2/table.html" %}
+        </tbody>
+    </table>
     </div>
 </body>
 </html>

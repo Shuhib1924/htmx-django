@@ -1,9 +1,15 @@
+from django.http import HttpResponse
 from django.shortcuts import render
+from django.views.decorators.http import require_http_methods
 
+from .forms import ExpenseForm
+from .models import Expense
 from .states import states
 
 
 def index(request):
+    form = ExpenseForm(request.POST or None)
+    expenses = Expense.objects.all().order_by("paid")
     regions = (
         ("n", "Norte"),
         ("ne", "Nordeste"),
@@ -12,8 +18,41 @@ def index(request):
         ("co", "Centro-Oeste"),
     )
 
-    context = {"regions": regions}
+    context = {"regions": regions, "expenses": expenses, "form": form}
     return render(request, "regis2/index.html", context)
+
+
+@require_http_methods(["POST"])
+def expense(request):
+    form = ExpenseForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+    expenses = Expense.objects.all().order_by("paid")
+    return render(request, "regis2/table.html", {"expenses": expenses})
+
+
+@require_http_methods(["POST"])
+def paid(request):
+    print(request.POST)
+    ids = request.POST.getlist("clicked")
+    Expense.objects.filter(pk__in=ids).update(paid=True)
+    expenses = Expense.objects.all().order_by("paid")
+    return render(request, "regis2/table.html", {"expenses": expenses})
+
+
+def test(request):
+    if request.method == "POST":
+        print(request.POST)
+    return HttpResponse("success")
+
+
+@require_http_methods(["POST"])
+def no_paid(request):
+    print(request.POST)
+    ids = request.POST.getlist("clicked")
+    Expense.objects.filter(pk__in=ids).update(paid=False)
+    expenses = Expense.objects.all().order_by("paid")
+    return render(request, "regis2/table.html", {"expenses": expenses})
 
 
 def get_states(region):

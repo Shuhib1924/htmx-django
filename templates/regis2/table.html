@@ -1,0 +1,12 @@
+ {% for expense in expenses %}
+ <tr
+    hx-target="this"
+    hx-swap="outerHTML"
+    class="{%if expense.paid%} bg-green-200 {%else%}bg-red-200 {%endif%}">
+    <td class="px-4 py-2"><input type="checkbox" name="clicked" value="{{expense.pk}}" id=""></td>
+    <td class="px-4 py-2">{{expense.description}}</td>
+    <td class="px-4 py-2">{{expense.value}}</td>
+    <td class="px-4 py-2">{%if expense.paid%} Yes {%else%} No {%endif%}</td>
+    <td class="px-4 py-2">---</td>
+</tr>
+{% endfor %}
