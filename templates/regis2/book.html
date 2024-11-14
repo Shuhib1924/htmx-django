@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://unpkg.com/htmx.org"></script>
+        <script src="https://unpkg.com/alpinejs" defer></script>
+        <title>Document</title>
+    </head>
+    <body hx-headers='{"X-CSRFToken" : "{{ csrf_token }}"}'>
+        <div class="flex m-4 space-x-8">
+            <h1 class="text-2xl">Booklist</h1>
+            <button class="px-4 py-2 text-white bg-teal-400"
+                    hx-get="{% url 'create_book' %}"
+                    hx-target="#g">ADD</button>
+        </div>
+        <table id="a" class="border-spacing-4 w-full table-auto">
+            <thead class="border-b-4">
+                <tr>
+                    <th class=" w-1/12 px-4 py-4">LIKE</th>
+                    <th class=" w-1/12 px-4 py-4">TITLE</th>
+                    <th class=" w-1/12 px-4 py-4">AUTHOR</th>
+                    <th class=" w-1/12 px-4 py-4">E or D</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y-2" id="i7">
+                {% include "regis2/for_row.html" %}
+            </tbody>
+        </table>
+        <div id="g"></div>
+        <div id="i6"></div>
+    </body>
+</html>

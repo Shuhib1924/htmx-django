@@ -1,0 +1,12 @@
+ <tr hx-target="this"
+    hx-swap="outerHTML"
+    class="{%if expense.paid%} bg-green-200 {%else%}bg-red-200 {%endif%}">
+    <td class="px-4 py-2"><input type="checkbox" name="clicked" value="{{expense.pk}}" id=""></td>
+    <td class="px-4 py-2">{{expense.description}}</td>
+    <td class="px-4 py-2">{{expense.value}}</td>
+    <td class="px-4 py-2">{%if expense.paid%} Yes {%else%} No {%endif%}</td>
+    <td class="px-4 py-2">
+    <a hx-get="{% url 'detail_row' expense.id %}" >Ed</a>
+    <span>/</span>
+    <a hx-delete="{% url 'delete_item' expense.id %}" hx-target="closest tr" hx-swap="outerHTML swap:500ms">Del</a></td>
+</tr>

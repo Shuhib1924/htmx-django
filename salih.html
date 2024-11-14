@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <title>Document</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script
+            src="https://unpkg.com/alpinejs"
+            defer
+        ></script>
+        <script src="https://unpkg.com/htmx.org"></script>
+    </head>
+
+    <body>
+        <div
+            x-data="{
+          task: '',
+          tasks: [],
+          add_task(){
+            console.log(this.task);
+            //this.task = '';
+            },
+          }"
+            class="w-fit flex flex-col items-center px-4 mx-auto mt-12 space-y-4"
+        >
+            <div
+                class="w-fit px-4 py-2 text-xl font-bold text-center text-white bg-green-400"
+                x-data="{test:'todo list'}"
+                x-text="test"
+            ></div>
+            <div class="bg-slate-200 rounded-xl p-4 space-y-2">
+                <div class="flex mb-5 space-x-4">
+                    <input
+                        x-model="task"
+                        type="text"
+                        class="border"
+                    />
+                    <button
+                        @click="tasks.push(task); task=' ';"
+                        class="p-2 text-white bg-green-400"
+                    >
+                        add
+                    </button>
+                </div>
+                <!-- <p x-text="input: ${task}"></p> -->
+                <!-- <p x-text="list: ${tasks}"></p> -->
+                <template x-for="i in tasks">
+                    <div
+                        class="bg-slate-500 w-full px-4 py-2 text-white rounded-lg"
+                        x-text="i"
+                    >
+                        1
+                    </div>
+                </template>
+            </div>
+        </div>
+        <div class="h-12"></div>
+        <div
+            class="w-fit flex gap-4 mx-auto"
+            x-data="{state1:true, state2:true}"
+        >
+            <div
+                class="size-20 bg-blue-500"
+                x-show="state1"
+                x-transition
+                @click="state1=false"
+            >
+                x-show
+            </div>
+            <template x-if="state2">
+                <div
+                    x-data="{open:false}"
+                    class="size-20 bg-red-500"
+                    @click="state2=false"
+                    x-show="open"
+                    x-init="$nextTick(() => { open=true });"
+                    x-transition.duration.1500ms
+                >
+                    x-if
+                </div>
+            </template>
+        </div>
+        <div x-data="{ list: [] }">
+            <button x-on:click="list.push('new')">Click me</button>
+            <template x-for="i in list">
+                <div x-show="open">
+                    <ul>
+                        <li
+                            x-text="i"
+                            x-transition.duration.1500ms
+                            x-data="{ open: false }"
+                            x-init="$nextTick(() => { open=true });"
+                            x-show="open"
+                        ></li>
+                    </ul>
+                </div>
+            </template>
+        </div>
+        <hr>
+        <div class="h-12"></div>
+        <div
+            id="a"
+            class="size-20 transition-all duration-1000 bg-red-400"
+            hx-swap="outerHTML"
+            hx-get="https://httpbin.org/get"
+        ></div>
+        <button
+            class="p-2 m-10 bg-red-400"
+            hx-post="https://httpbin.org/post"
+            hx-vals='{"secret" : "new message"}'
+            hx-swap="outerHTML"
+            hx-headers='{"X-CSRFToken" : "{{csrf_token}}"}'
+        >
+            vals
+        </button>
+        <button
+            class="p-2 m-10 bg-green-400"
+            hx-post="https://httpbin.org/post"
+            hx-vars="{'test' : 'vars'}"
+            hx-swap="outerHTML"
+            hx-headers='{"X-CSRFToken" : "{{csrf_token}}"}'
+        >
+            vars</button>
+    </body>
+
+</html>

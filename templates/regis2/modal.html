@@ -1,0 +1,20 @@
+<div class="bg-black/50 absolute inset-0 z-10 flex"
+     x-data="{show:true}"
+     x-show="show">
+    <form @click.outside="show=false"
+          class="p-5 m-auto bg-white"
+          hx-post="{% url 'create_book' %}"
+          hx-target="#i7"
+          hx-swap="afterbegin">
+        <div class="flex justify-between">
+            <h1 class="text-xl">add new book</h1>
+            <h1 @click="show=false" class="cursor-pointer">X</h1>
+        </div>
+        {{ form }}
+        <div class="flex justify-end gap-3 my-4">
+            <button @click="show=false" type="submit" class="p-2 text-white bg-teal-500">add</button>
+            <button @click="show=false" type="button" class="bg-rose-500 p-2 text-white">cancel</button>
+        </div>
+        {% comment %} <div id="i7"></div> {% endcomment %}
+    </form>
+</div>

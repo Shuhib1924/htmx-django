@@ -5,7 +5,7 @@
     <td>{{form.value}}</td>
     <td></td>
     <td>
-        <button type="submit" class="p-2 text-white bg-green-300" hx-post="{% url 'edit_row' expense.pk %}" hx-target="#goal1" hx-include="#row1" hx-swap="outerHTML">OK</button>
-        <button class="p-2 text-white bg-red-300" hx-get="{% url 'edit_row' expense.pk %}" hx-target="#goal1" hx-swap="outerHTML">X</button>
+        <button type="submit" class="p-2 text-white bg-green-300" hx-post="{% url 'edit_row' expense.pk %}" hx-target="#goal1" hx-include="#row1" hx-swap="innerHTML">OK</button>
+        <button class="p-2 text-white bg-red-300" hx-get="{% url 'edit_row' expense.pk %}" hx-target="#goal1" hx-swap="innerHTML">X</button>
     </td>
 </tr>

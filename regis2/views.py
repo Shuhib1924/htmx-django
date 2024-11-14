@@ -1,9 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.http import require_http_methods
+from django.views.generic import ListView
 
-from .forms import ExpenseForm
-from .models import Expense
+from .forms import BookForm, ExpenseForm
+from .models import Book, Expense
 from .states import states
 
 
@@ -77,8 +78,7 @@ def edit_row(request, pk):
 def delete_item(request, pk):
     expense = Expense.objects.get(pk=pk)
     expense.delete()
-    expenses = Expense.objects.all().order_by("paid")
-    return render(request, "regis2/table.html", {"expenses": expenses})
+    return render(request, "regis2/table.html")
 
 
 def get_states(region):
@@ -117,3 +117,23 @@ def drop(request):
 
     context = {"ufs": ufs[region]}
     return render(request, "regis2/drop.html", context)
+
+
+class BookListView(ListView):
+    model = Book
+    form = BookForm
+    paginate_by = 10
+    context_object_name = "books"
+    template_name = "regis2/book.html"
+
+
+def create_book(request):
+    form = BookForm(request.POST or None)
+    if request.method == "POST":
+        print(request.POST)
+        if form.is_valid():
+            book = form.save()
+            # books = Book.objects.all()
+            # return HttpResponse(f"{form}")
+            return render(request, "regis2/book_row.html", {"book": book})
+    return render(request, "regis2/modal.html", {"form": form})
