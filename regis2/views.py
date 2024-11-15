@@ -137,3 +137,12 @@ def create_book(request):
             # return HttpResponse(f"{form}")
             return render(request, "regis2/book_row.html", {"book": book})
     return render(request, "regis2/modal.html", {"form": form})
+
+
+# def update_book(request, pk):
+#     instance = Book.objects.get(pk=pk)
+
+
+def detail_book(request, pk):
+    book = Book.objects.get(pk=pk)
+    return render(request, "regis2/book_detail.html", {"book": book})

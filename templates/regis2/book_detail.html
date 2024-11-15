@@ -1,0 +1,18 @@
+<div class="bg-black/50 absolute inset-0 z-10 flex"
+     x-data="{show:true}"
+     x-show="show">
+    <form @click.outside="show=false"
+          class="p-5 m-auto bg-white"
+          hx-post="{% url 'create_book' %}"
+          hx-target="#i7"
+          hx-swap="afterbegin">
+        <div class="flex justify-between gap-8">
+            <h1 class="text-xl">add new book</h1>
+            <h1 @click="show=false" class="cursor-pointer">X</h1>
+        </div>
+        <div class="m-5 space-y-5">
+            <div class="text-xl">{{ book.title }}</div>
+            <div class="text-xl">{{ book.author }}</div>
+        </div>
+    </form>
+</div>
