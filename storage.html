@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        >
+        <script
+            defer
+            src="https://unpkg.com/alpinejs"
+        ></script>
+        <title>Document</title>
+    </head>
+
+    <body>
+        <div
+            x-data="cookies()"
+            x-init="getAllCookies()"
+        >
+            <div x-text="showAllCookies()"></div>
+            <hr>
+            <h2>SetCookie</h2>
+            <form @submit.prevent="setCookie()">
+                <input
+                    type="text"
+                    x-model="cookieName"
+                    placeholder="cookieName"
+                    required
+                >
+                <input
+                    type="text"
+                    x-model="cookieValue"
+                    placeholder="cookieValue"
+                    required
+                >
+                <button type="submit">Set Cookie</button>
+            </form>
+            <h2>GetCookie and delete</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>cookieName</th>
+                        <th>cookieValue</th>
+                        <th>action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template x-for="cookie in cookies">
+                        <tr>
+                            <th x-text="cookie.name"></th>
+                            <th x-text="cookie.value"></th>
+                            <th><button @click="deleteCookie(cookie.name)">delete</button></th>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+        <script>
+            function cookies() {
+                return {
+                    cookieName: '',
+                    cookieValue: '',
+                    cookies: [],
+                    showAllCookies() {
+                        return this.cookies.map(c => `${c.name}=${c.value}`).join(', ');
+                    },
+                    setCookie() {
+                        var d = new Date();
+                        d.setTime(d.getTime() + (365 * 24 * 60 * 60 * 1000)); // Set expiration to 1 year
+                        var expires = "expires=" + d.toUTCString(); // Format as UTC string
+                        document.cookie = `${this.cookieName}=${this.cookieValue}; ${expires}; path=/`;
+                        console.log(`Cookie set: ${this.cookieName} = ${this.cookieValue}`);
+                        this.cookieName = '';
+                        this.cookieValue = '';
+                        this.getAllCookies();
+                    },
+                    getAllCookies() {
+                        const cookieArray = document.cookie.split('; ').map(cookie => {
+                            const [name, value] = cookie.split('=');
+                            return { name: name.trim(), value: decodeURIComponent(value) };
+                        });
+                        this.cookies = cookieArray;
+                    },
+                    deleteCookie(name) {
+                        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+                        console.log(`${name} has been deleted.`);
+                        this.getAllCookies();
+                    }
+                }
+            }
+        </script>
+    </body>
+
+</html>

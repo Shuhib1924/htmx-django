@@ -1,11 +1,19 @@
 <div class="bg-black/50 absolute inset-0 z-10 flex"
-     x-data="{show:true}"
+     x-data="{show:false}"
      x-show="show">
     <form @click.outside="show=false"
           class="p-5 m-auto bg-white"
           hx-post="{% url 'create_book' %}"
           hx-target="#i7"
-          hx-swap="afterbegin">
+          hx-swap="afterbegin"
+          x-show="show"
+          x-init="$nextTick(()=>{show=true})"
+          x-transition:enter="duration-500 ease-out"
+          x-transition:enter-start="opacity-0 -translate-y-40"
+          x-transition:enter-end="opacity-100 translate-y-0"
+          x-transition:leave="duration-500 ease-in"
+          x-transition:leave-start="opacity-100 translate-y-0"
+          x-transition:leave-end="opacity-0 -translate-y-40">
         <div class="flex justify-between gap-8">
             <h1 class="text-xl">add new book</h1>
             <h1 @click="show=false" class="cursor-pointer">X</h1>

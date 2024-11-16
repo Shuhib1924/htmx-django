@@ -11,16 +11,40 @@
             src="https://unpkg.com/alpinejs"
             defer
         ></script>
+        <link
+            href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <script src="https://cdn.tailwindcss.com"></script>
         <title>Document</title>
     </head>
 
     <body>
+        <label
+            for="my_modal_7"
+            class="btn"
+        >open modal</label>
+
+        <!-- Put this part before </body> tag -->
+        <input
+            type="checkbox"
+            id="my_modal_7"
+            class="modal-toggle"
+        />
         <div
-            x-data="{
-                test: 'hello'
-            }"
-            x-init="test =await (await fetch('https://zenquotes.io/api/quotes')).json()"
-        ></div>
+            class="modal"
+            role="dialog"
+        >
+            <div class="modal-box">
+                <h3 class="text-lg font-bold">Hello!</h3>
+                <p class="py-4">This modal works with a hidden checkbox!</p>
+            </div>
+            <label
+                class="modal-backdrop"
+                for="my_modal_7"
+            >Close</label>
+        </div>
     </body>
 
 </html>

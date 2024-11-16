@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        >
+        <script src="https://unpkg.com/htmx.org"></script>
+        <script
+            src="https://unpkg.com/alpinejs"
+            defer
+        ></script>
+        <title>Document</title>
+    </head>
+
+    <body>
+        <div x-data="cookieManager()">
+            <h2>Set Cookie</h2>
+            <form @submit.prevent="setCookie">
+                <input
+                    type="text"
+                    x-model="cookieName"
+                    placeholder="Cookie Name"
+                    required
+                />
+                <input
+                    type="text"
+                    x-model="cookieValue"
+                    placeholder="Cookie Value"
+                    required
+                />
+                <button type="submit">Set Cookie</button>
+            </form>
+
+            <h2>Cookies</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cookie Name</th>
+                        <th>Cookie Value</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template
+                        x-for="cookie in cookies"
+                        :key="cookie.name"
+                    >
+                        <tr>
+                            <td x-text="cookie.name"></td>
+                            <td x-text="cookie.value"></td>
+                            <td>
+                                <button @click="deleteCookie(cookie.name)">Delete</button>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+
+            <button @click="loadCookies">Load Cookies</button>
+        </div>
+        <script>
+            document.addEventListener('alpine:init', () => {
+                Alpine.data('cookieManager', () => ({
+                    cookieName: '',
+                    cookieValue: '',
+                    cookies: [], // Array to hold cookie objects
+                    init() {
+                        this.loadCookies();
+                    },
+                    // Function to set a cookie
+                    setCookie() {
+                        var d = new Date();
+                        d.setTime(d.getTime() + (365 * 24 * 60 * 60 * 1000)); // Set expiration to 1 year
+                        var expires = "expires=" + d.toUTCString(); // Format as UTC string
+
+                        // Set the cookie
+                        document.cookie = `${this.cookieName}=${this.cookieValue}; ${expires}; path=/`;
+
+                        // Clear input fields
+                        console.log(`Cookie set: ${this.cookieName} = ${this.cookieValue}`);
+                        this.cookieName = '';
+                        this.cookieValue = '';
+                        this.loadCookies(); // Refresh the cookie list
+                    },
+
+                    // Function to load cookies into the array
+                    loadCookies() {
+                        this.cookies = this.getAllCookies();
+                    },
+
+                    // Function to retrieve all cookies
+                    getAllCookies() {
+                        const cookieArray = document.cookie.split('; ').map(cookie => {
+                            const [name, value] = cookie.split('=');
+                            return { name: name.trim(), value: decodeURIComponent(value) };
+                        });
+                        return cookieArray;
+                    },
+
+                    // Function to delete a specific cookie by name
+                    deleteCookie(name) {
+                        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+                        console.log(`${name} has been deleted.`);
+                        this.loadCookies(); // Refresh the cookie list
+                    }
+                }));
+            });
+        </script>
+    </body>
+
+</html>

@@ -3,9 +3,9 @@
      x-show="show">
     <form @click.outside="show=false"
           class="p-5 m-auto bg-white"
-          hx-post="{% url 'create_book' %}"
-          hx-target="#i6"
-          hx-swap="afterbegin"
+          hx-post="{% url 'update_book' instance.pk %}"
+          hx-target="#book-{{ instance.id }}"
+          hx-swap="outerHTML"
           x-show="show"
           x-init="$nextTick(()=>{show=true})"
           x-transition:enter="duration-500 ease-out"
@@ -20,7 +20,7 @@
         </div>
         {{ form }}
         <div class="flex justify-end gap-3 my-4">
-            <button @click="show=false" type="submit" class="p-2 text-white bg-teal-500">add</button>
+            <button @click="show=false" type="submit" class="p-2 text-white bg-teal-500">update</button>
             <button @click="show=false" type="button" class="bg-rose-500 p-2 text-white">cancel</button>
         </div>
     </form>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        >
+        <script
+            src="https://unpkg.com/alpinejs"
+            defer
+        ></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <title>Document</title>
+    </head>
+
+    <body>
+        <div x-data="{ open: false }">
+            <button x-on:click="open = ! open">Open/Close</button>
+            <div class="my-2">
+                <template x-if="open">
+                    <div
+                        x-data="{ show: false }"
+                        x-init="$nextTick(() => { show = true })"
+                        x-show="show"
+                        x-transition:enter.duration.2000ms
+                        x-transition:leave.duration.2000ms
+                        class="w-min flex justify-between p-2 m-5 text-white bg-blue-300"
+                    >
+                        <div>1</div>
+                        <div>2</div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </body>
+
+</html>
