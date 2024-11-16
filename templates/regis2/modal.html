@@ -4,7 +4,7 @@
     <form @click.outside="show=false"
           class="p-5 m-auto bg-white"
           hx-post="{% url 'create_book' %}"
-          hx-target="#i6"
+          hx-target="#i7"
           hx-swap="afterbegin"
           x-show="show"
           x-init="$nextTick(()=>{show=true})"
