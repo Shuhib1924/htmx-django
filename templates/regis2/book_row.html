@@ -5,6 +5,10 @@
         hx-target="#i6">{{ book.title }}</th>
     <th class="px-4 py-2">{{ book.author }}</th>
     <th class="px-4 py-2">
-        <span hx-get="{% url 'update_book' book.pk %}" hx-target="#i6">Edit</span> or <span>Delete</span>
+        <span hx-get="{% url 'update_book' book.pk %}" hx-target="#i6">Edit</span>
+        or
+        <span hx-delete="{% url 'delete_book' book.id %}"
+              hx-target="closest tr"
+              hx-swap="outerHTML swap:500ms">Delete</span>
     </th>
 </tr>

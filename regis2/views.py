@@ -154,3 +154,10 @@ def update_book(request, pk):
     return render(
         request, "regis2/update_modal.html", {"form": form, "instance": instance}
     )
+
+
+@require_http_methods(["DELETE"])
+def delete_book(request, pk):
+    book = Book.objects.get(pk=pk)
+    book.delete()
+    return render(request, "regis2/for_row.html")
