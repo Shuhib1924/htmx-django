@@ -18,4 +18,5 @@ urlpatterns = [
     path("/detail_book/<int:pk>/", views.detail_book, name="detail_book"),
     path("/update_book/<int:pk>/", views.update_book, name="update_book"),
     path("/delete_book/<int:pk>/", views.delete_book, name="delete_book"),
+    path("/toggle_like/<int:pk>/", views.toggle_like, name="toggle_like"),
 ]

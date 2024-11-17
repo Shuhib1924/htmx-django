@@ -25,6 +25,7 @@ class Expense(TimeStampedModel):
 class Book(models.Model):
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=100)
+    like = models.BooleanField(null=True)
 
     class Meta:
         ordering = ("title",)

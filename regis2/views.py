@@ -161,3 +161,18 @@ def delete_book(request, pk):
     book = Book.objects.get(pk=pk)
     book.delete()
     return render(request, "regis2/for_row.html")
+
+
+@require_http_methods(["POST"])
+def toggle_like(request, pk):
+    print(request.POST)
+    book = Book.objects.get(pk=pk)
+    action = request.POST.get("action")
+    if action == "like":
+        book.like = True
+    elif action == "unlike":
+        book.like = False
+    else:
+        print("wrong like param")
+    book.save()
+    return render(request, "regis2/book_row.html", {"book": book})
