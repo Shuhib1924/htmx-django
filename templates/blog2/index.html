@@ -1,39 +1,29 @@
 {% load static %}
 <html lang="en">
-<head>
-    <title>
-        List View
-    </title>
-    <meta charset="utf-8">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        main {
-           padding-top: 1rem;
-           padding-bottom: 3rem;
-        }
-    </style>
-</head>
-<body>
-    <main  class="ui container">
-        <h1 class="ui header center aligned">List View</h1>
-        <form
-            class="centred ui form"
-            hx-get="{% url 'results' %}"
-            hx-target="#search-results"
-            hx-trigger="submit, input delay:0.3s"
-        >
-            <input type="text" name="search" placeholder="Search..." value="{{ search }}">
-        </form>
-        <div id="search-results">
-            {% include 'blog2/results.html' %}
-        </div>
-    </main>
-    <script type="text/javascript" src="{% static 'htmx.min.js' %}"></script>
-    <script>
+    <head>
+        <title>List View</title>
+        <meta charset="utf-8">
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body>
+        <main class="ui container">
+            <h1 class="ui header center aligned">List View</h1>
+            <form class="centred ui form"
+                  hx-get="{% url 'results' %}"
+                  hx-target="#search-results"
+                  hx-trigger="submit, input delay:0.3s">
+                <input type="text"
+                       name="search"
+                       placeholder="Search..."
+                       value="{{ search }}">
+            </form>
+            <div id="search-results" class="grid grid-cols-5 gap-3 m-8">{% include 'blog2/results.html' %}</div>
+        </main>
+        <script type="text/javascript" src="{% static 'htmx.min.js' %}"></script>
+        <script>
       document.body.addEventListener('htmx:configRequest', (event) => {
         event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
       })
-    </script>
-
-</body>
+        </script>
+    </body>
 </html>
