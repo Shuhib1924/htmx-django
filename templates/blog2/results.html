@@ -6,6 +6,7 @@
                     <img src="{{ post.image.url }}">
                 </div>
                 <div class="content">
+                    <a class="header">{{ post.id }}</a> -
                     <a class="header">{{ post.title }}</a>
                 </div>
             </div>
@@ -17,15 +18,11 @@
 <div id="load-more">
     {% if posts.has_next %}
         <div class="ui divider"></div>
-        <button
-            class="ui button primary"
-            hx-get="{% url 'results' %}"
-            hx-vals='{"page": "{{ posts.next_page_number }}", "search": "{{ search }}"}'
-            hx-target="#load-more"
-            hx-swap="outerHTML"
-            hx-trigger="intersect"
-        >
-            Load more
-        </button>
+        <button class="ui button primary"
+                hx-get="{% url 'blog2:results' %}"
+                hx-vals='{"page": "{{ posts.next_page_number }}", "search": "{{ search }}"}'
+                hx-target="#load-more"
+                hx-swap="outerHTML"
+                hx-trigger="intersect">Load more</button>
     {% endif %}
 </div>

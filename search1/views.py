@@ -1,8 +1,9 @@
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.template.loader import render_to_string
-from django.http import JsonResponse
-from .models import Person
 from django.utils.html import format_html
+
+from search1.models import Person
 
 
 def index(request):

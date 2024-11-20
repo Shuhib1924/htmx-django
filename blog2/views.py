@@ -1,5 +1,7 @@
-from django.shortcuts import render
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.db.models import Q
+from django.shortcuts import render
+
 from .models import Post
 
 ITEMS = 12
@@ -22,7 +24,7 @@ def _search_posts(request):
     page = request.GET.get("page")
     posts = Post.objects.all()
     if search:
-        posts = posts.filter(title__icontains=search)
+        posts = posts.filter(Q(title__icontains=search) | Q(id__icontains=search))
 
     paginator = Paginator(posts, ITEMS)
     try:

@@ -1,11 +1,12 @@
-from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.shortcuts import redirect, render
+
+from .forms import BookForm, BookFormSet
 from .models import Author, Book
-from .forms import BookFormSet, BookForm
 
 
 def index(request):
-    return render(request, "book1/index.html")
+    return render(request, "book1/index.html.html")
 
 
 def create_book(request, pk):

@@ -20,8 +20,12 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
+from . import views
+
+app_name = "main"
 urlpatterns = [
     path("admin/", admin.site.urls),
+    # path("", views.index, name="index"),
     path("ani1/", include("ani1.urls")),
     path("blog1/", include("blog1.urls")),
     path("blog2/", include("blog2.urls")),
@@ -30,12 +34,12 @@ urlpatterns = [
     path("form3/", include("form3.urls")),
     path("todo1/", include("todo1.urls")),
     path("book1/", include("book1.urls")),
-    path("mdodal1/", include("modal1.urls")),
+    path("modal1/", include("modal1.urls")),
     path("imdb1/", include("imdb1.urls")),
     path("book2/", include("book2.urls")),
     path("todo2/", include("todo2.urls")),
     path("store1/", include("store1.urls")),
-    path("src1/", include("search1.urls")),
+    path("search1/", include("search1.urls")),
     path("poll1/", include("poll1.urls")),
     path("scroll1/", include("scroll1.urls")),
     path("quiz1/", include("quiz1.urls")),

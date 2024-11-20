@@ -9,10 +9,11 @@
         <main class="ui container">
             <h1 class="ui header center aligned">List View</h1>
             <form class="centred ui form"
-                  hx-get="{% url 'results' %}"
+                  hx-get="{% url 'blog2:results' %}"
                   hx-target="#search-results"
                   hx-trigger="submit, input delay:0.3s">
                 <input type="text"
+                       class="p-2 border-2"
                        name="search"
                        placeholder="Search..."
                        value="{{ search }}">
