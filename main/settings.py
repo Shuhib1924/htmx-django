@@ -71,6 +71,8 @@ INSTALLED_APPS = [
     "scroll3",
     "blog3",
     "taggit",
+    "quiz2",
+    "cart1",
 ]
 
 MIDDLEWARE = [

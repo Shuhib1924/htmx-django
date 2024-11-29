@@ -1,0 +1,18 @@
+<form class="w-fit h-fit flex flex-col p-3 bg-red-300"
+      hx-post="{% url 'cart1:add_cart' %}"
+      hx-headers='{"X-CSRFToken" : "{{ csrf_token }}"}'
+      hx-target="#d2"
+      hx-swap="beforeend">
+    <h1>{{ product.name }}</h1>
+    <input type="hidden" name="product" value="{{ product.name }}">
+    {% for variation in product.var_list %}
+        <div>
+            <input type="checkbox"
+                   name="variations"
+                   id="ic-{{ variation.id }}"
+                   value="{{ variation.name }}">
+            <label for="ic-{{ variation.id }}">{{ variation.name }}</label>
+        </div>
+    {% endfor %}
+    <button type="submit" class="text-center">add</button>
+</form>

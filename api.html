@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        >
+        <script
+            src="https://unpkg.com/alpinejs"
+            defer
+        ></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <!-- <script src="https://unpkg.com/htmx.org"></script> -->
+        <style type="text/tailwindcss">
+            input{ @apply border-2 border-gray-300; }
+         </style>
+        <title>Document</title>
+    </head>
+
+    <body>
+        <div class="text-2xl font-bold text-center text-gray-400">Besim Liste</div>
+        <div x-data="data()">
+            <input
+                type="text"
+                x-model="name"
+            >
+            <input
+                type="text"
+                x-model="date"
+            >
+            <input
+                type="text"
+                x-model="date2"
+            >
+            <div x-text="name"></div>
+            <div x-text="date"></div>
+            <div x-text="date2"></div>
+        </div>
+
+    </body>
+    <script>
+        function data() {
+            return {
+                name: localStorage.getItem('name') || 'Guest',
+                date: localStorage.getItem('date') || new Date().toISOString().slice(0, 10),
+                date2: localStorage.getItem('date2') || new Date().toISOString(),
+                init() {
+                    this.$watch('name', (e) => { localStorage.setItem('name', e); });
+                    this.$watch('date', (e) => { localStorage.setItem('date', e); });
+                    this.$watch('date2', (e) => { localStorage.setItem('date2', e); });
+                }
+            }
+        }
+    </script>
+
+</html>

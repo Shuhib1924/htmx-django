@@ -1,0 +1,18 @@
+<script src="https://unpkg.com/htmx.org"></script>
+<h1>{{ question.text }}</h1>
+<form hx-post="{% url 'quiz2:question' question.id %}"
+      hx-target="#question-container"
+      hx-swap="innerHTML">
+    {% csrf_token %}
+    {% for answer in question.answers.all %}
+        <div>
+            <input type="radio"
+                   id="answer{{ forloop.counter }}"
+                   name="answer"
+                   value="{{ answer.id }}">
+            <label for="answer{{ forloop.counter }}">{{ answer.text }}</label>
+        </div>
+    {% endfor %}
+    <button type="submit">Next</button>
+</form>
+<div id="question-container"></div>

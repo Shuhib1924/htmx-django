@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ question.text }}</title>
+        <script src="https://unpkg.com/htmx.org"></script>
+    </head>
+    <body>
+        <h1>quiz2</h1>
+        {% for question in questions %}
+            <div>
+                <a href="{% url 'quiz2:question' question.id %}">{{ question.text }}</a>
+            </div>
+        {% endfor %}
+        <!-- This is where new questions will be loaded -->
+    </body>
+</html>
